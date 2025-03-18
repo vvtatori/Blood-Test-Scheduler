@@ -4,6 +4,7 @@
  */
 package bloodtestscheduler;
 
+import bloodtestscheduler.doubleLinkedList.MyPatientDLList;
 import bloodtestscheduler.priorityQueue.MyPatientPriorityQ;
 
 /**
@@ -18,8 +19,8 @@ public class BloodTestScheduler {
     public static void main(String[] args) {
         //Testing PriorityQ
         //Patient Requests a Test
-        Patient p1 = new Patient("Alice", "urgent", "Mr. Smith");
-        Patient p2 = new Patient("Bob", "medium", "Mr. Lee");
+        Patient p1 = new Patient("Alice", "urgent", "Dr. Smith");
+        Patient p2 = new Patient("Bob", "medium", "Dr. Lee");
 
         //they enter the priority queue with additional details
         Patient scheduledP1 = new Patient(p1.getName(), p1.getPriority(), p1.getDetailsGP(), 70, true);
@@ -31,6 +32,28 @@ public class BloodTestScheduler {
         scheduler.enqueue(scheduledP2);
 
         System.out.println(scheduler.printPQueue());
+        
+        //Testing DDL for patients added 
+        MyPatientDLList patientList = new MyPatientDLList();
+        // Adding patients
+        patientList.addPatient(new Patient("Alice", "urgent", "Dr. Smith"));
+        patientList.addPatient(new Patient("Bob", "medium", "Dr. Lee"));
+        patientList.addPatient(new Patient("Charlie", "low", "Dr. Green"));
+        
+        // Display all patients
+        System.out.println("Patients requesting a test:");
+        patientList.printList();
+        
+        // Remove a patient
+        patientList.removePatient("Bob");
+        
+        // Display after removal
+        System.out.println("\nAfter removing Bob:");
+        patientList.printList();
+        
+        //Getting a patient from the list
+        System.out.println("\n" + patientList.getPatient("Alice"));
+       // patientList.getPatient("Alice");
     }
     
 }

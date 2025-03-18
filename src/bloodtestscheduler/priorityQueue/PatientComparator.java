@@ -14,16 +14,16 @@ import java.util.Comparator;
 public class PatientComparator implements Comparator<Patient>{
     @Override
     public int compare(Patient p1, Patient p2) {
-        // Comparing by the Priority Level
+        // Comparing by the Priority Level from the priorityLevel() method - for priority
         int priorityComparison = getPriorityLevel(p2.getPriority()) - getPriorityLevel(p1.getPriority());
-        if (priorityComparison != 0) {
-            return priorityComparison;  // Higher priority first
+        if (priorityComparison != 0) {  //If the difference is not 0, meaning it's not equal
+            return priorityComparison;  // Higher priority is first
         }
 
         // Comparing by Age (Older patients first)
-        int ageComparison = Integer.compare(p2.getAge(), p1.getAge());
+        int ageComparison = Integer.compare(p2.getAge(), p1.getAge());  //compares the age of two patients
         if (ageComparison != 0) {
-            return ageComparison;
+            return ageComparison;  //the older age is first
         }
 
         // Comparing by Hospital Ward Status
