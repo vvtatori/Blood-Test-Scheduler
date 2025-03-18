@@ -4,14 +4,15 @@
  */
 package bloodtestscheduler.queue;
 
+import bloodtestscheduler.Patient;
 import java.util.ArrayList;
 
 /**
  *
  * @author vvtat
  */
-public class NoShowPatientsQueue {
-    private ArrayList<String> theQueue;  // Declare ArrayList to store no-show patients
+public class NoShowPatientsQueue implements NoShowPatientsInterface{
+    private ArrayList<Patient> theQueue;  // Declare ArrayList to store no-show patients
     private final int MAX_SIZE = 5;  // Maximum size of the queue
 
     // Constructor to initialize the queue
@@ -20,38 +21,43 @@ public class NoShowPatientsQueue {
     }
 
     // Returns the size of the queue
+    @Override
     public int size() {
         return theQueue.size();
     }
 
     // Checks if the queue is empty
+    @Override
     public boolean isEmpty() {
         return theQueue.isEmpty();
     }
 
     // Adds a new no-show patient (enqueue operation)
-    public void enqueue(String patientName) {
+    @Override
+    public void enqueue(Patient patient) {
         if (theQueue.size() == MAX_SIZE) {
             theQueue.remove(0); // Remove the oldest no-show patient (shift elements left)
         }
-        theQueue.add(patientName);  // Add the new patient at the end
+        theQueue.add(patient);  // Add the new patient at the end
     }
 
     // Removes the first patient in the queue (dequeue operation)
-    public String dequeue() {
+    @Override
+    public Patient dequeue() {
         if (!theQueue.isEmpty()) {
             return theQueue.remove(0);
         } else {
-            return "Queue is empty.";
+            return null;
         }
     }
 
     // Returns the front (oldest) patient in the queue without removing it
-    public String frontElement() {
+    @Override
+    public Patient frontElement() {
         if (!theQueue.isEmpty()) {
             return theQueue.get(0);
         } else {
-            return "Queue is empty.";
+            return null;
         }
     }
 
@@ -66,6 +72,7 @@ public class NoShowPatientsQueue {
     }
 
     // Displays the queue contents as a formatted string
+    @Override
     public String displayQueue() {
         StringBuilder str = new StringBuilder();
         if (theQueue.isEmpty()) {
@@ -73,7 +80,7 @@ public class NoShowPatientsQueue {
         } else {
             for (int i = 0; i < theQueue.size(); i++) {
                 str.append(theQueue.get(i));
-                str.append(" ; ");
+                str.append(" \n ");
             }
         }
         return str.toString();

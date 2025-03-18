@@ -16,4 +16,6 @@ public interface NoShowPatientsInterface {
     public void enqueue(Patient patient);
     public Patient dequeue();
     public Patient frontElement();
+    
+    public String displayQueue();
 }
