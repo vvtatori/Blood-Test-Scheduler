@@ -11,11 +11,11 @@ import bloodtestscheduler.Patient;
  * @author vvtat
  */
 public interface PatientDLLInterface {
-    public boolean isEmpty();
-    public int size();
-    public Patient getPatient(String name);
-    public void removePatient(String name);
-    public void addPatient(Patient patient);
+    public boolean isEmpty();  //checks if the list is empty
+    public int size();  //gives size of the liust
+    public Patient getPatient(String name); //gets a specific patient from the list
+    public void removePatient(String name); //removes a patient from the list
+    public void addPatient(Patient patient); //adds a patient to the list
    
     public void printList();
 }

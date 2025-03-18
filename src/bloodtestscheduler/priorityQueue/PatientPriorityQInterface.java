@@ -11,10 +11,10 @@ import bloodtestscheduler.Patient;
  * @author vvtat
  */
 public interface PatientPriorityQInterface {
-    public void enqueue(Patient patient);
-    public int size();
-    public boolean isEmpty();
-    public Patient dequeue();
+    public void enqueue(Patient patient);  //to add a patient
+    public int size();  //gives the size of the PQ
+    public boolean isEmpty(); //Cchecks if the queue is empty
+    public Patient dequeue();  //removes a patient object from the queue
     
     public String printPQueue();
 }

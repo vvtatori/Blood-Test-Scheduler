@@ -48,13 +48,13 @@ public class MyPatientDLList implements PatientDLLInterface{
     public void removePatient(String name){
         current = head;
         while (current != null) {
-            if (current.patient.getName().equalsIgnoreCase(name)) {
-                //Removing the first item
+            if (current.patient.getName().equalsIgnoreCase(name)) {  //checks if the name matches any name in the list
+                //Removing the first item (head)
                 if (current == head) {
                     head = head.getNext();
                     head.setPrev(null);
                     //if (head != null) head.prev = null;
-                } else if (current == last) {  //removing the last item
+                } else if (current == last) {  //removing the last item (tail)
                     last = last.getPrev(); 
                     last.setNext(null);
                 } else {  //removing an item within the list
@@ -64,7 +64,7 @@ public class MyPatientDLList implements PatientDLLInterface{
                 return;
             }
             current = current.next;
-            size--;
+            size--;  //reduces the size of the list by 1 after removing the patients
         }    
     }
             
@@ -72,7 +72,7 @@ public class MyPatientDLList implements PatientDLLInterface{
     public Patient getPatient(String name){
         current = head; //starting from the first item in the list
         while (current != null) {
-            if (current.patient.getName().equalsIgnoreCase(name)) {
+            if (current.patient.getName().equalsIgnoreCase(name)) {  //checks if the name matches any name in the list
                 return current.patient;
             }
             current = current.next;

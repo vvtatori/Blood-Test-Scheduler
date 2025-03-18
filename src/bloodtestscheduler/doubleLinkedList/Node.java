@@ -11,6 +11,7 @@ import bloodtestscheduler.Patient;
  * @author vvtat
  */
 public class Node {
+    //Nodes to store the current, previous and next patients in the list 
     Patient patient;
     Node next;
     Node prev;
