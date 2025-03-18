@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 public class BloodTestSchedulerGUI extends javax.swing.JFrame {
     private MyPatientDLList patientList;       // Stores all patients
     private MyPatientPriorityQ priorityQueue; // Schedules next patient
-    private NoShowPatientsQueue noShowQueue; 
+    private NoShowPatientsQueue noShowQueue;  //Holds a track of the no show patients
     /**
      * Creates new form BloodTestSchedulerGUI
      */
@@ -64,6 +64,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         displayNoShowTA = new javax.swing.JTextArea();
         exitBTN = new javax.swing.JButton();
+        displayPQBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,7 +100,12 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         displayPatTA.setRows(5);
         jScrollPane1.setViewportView(displayPatTA);
 
-        schedulePatBtn.setText("Schedule Next Patient");
+        schedulePatBtn.setText("Scheduled Next Patient");
+        schedulePatBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                schedulePatBtnActionPerformed(evt);
+            }
+        });
 
         schedulePatTA.setColumns(20);
         schedulePatTA.setRows(5);
@@ -122,6 +128,11 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         });
 
         addNoShowBtn.setText("ADD No Show Patient");
+        addNoShowBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addNoShowBtnActionPerformed(evt);
+            }
+        });
 
         lblTitle4.setText("1. MANAGE PATIENT REQUESTS");
 
@@ -130,12 +141,24 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         fromHospCheckBox.setText("YES");
 
         viewNoShowBTN.setText("VIEW All No Show Patients");
+        viewNoShowBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewNoShowBTNActionPerformed(evt);
+            }
+        });
 
         displayNoShowTA.setColumns(20);
         displayNoShowTA.setRows(5);
         jScrollPane3.setViewportView(displayNoShowTA);
 
         exitBTN.setText("EXIT");
+
+        displayPQBtn.setText("View Full Priority Queue");
+        displayPQBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayPQBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -209,19 +232,24 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(78, 78, 78)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(schedulePatBtn)
-                    .addComponent(addNoShowBtn))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(schedulePatBtn)
+                        .addComponent(addNoShowBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(displayPQBtn)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(viewNoShowBTN)
                         .addGap(408, 408, 408))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(deletePatBtn)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(244, 244, 244))))
+                        .addComponent(deletePatBtn)
+                        .addGap(244, 244, 244))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,23 +285,22 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fromHospLbl)
                     .addComponent(fromHospCheckBox))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addPatientBtn)
+                    .addComponent(displayAllPatBtn)
+                    .addComponent(searchPatBtn)
+                    .addComponent(deletePatBtn))
+                .addGap(39, 39, 39)
+                .addComponent(lblTitle2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(addPatientBtn)
-                            .addComponent(displayAllPatBtn)
-                            .addComponent(searchPatBtn)
-                            .addComponent(deletePatBtn))
-                        .addGap(39, 39, 39)
-                        .addComponent(lblTitle2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                        .addComponent(schedulePatBtn)
-                        .addGap(72, 72, 72))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)))
+                        .addComponent(schedulePatBtn)
+                        .addGap(30, 30, 30)
+                        .addComponent(displayPQBtn))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addComponent(lblTitle3)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -294,6 +321,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
 
     private void addPatientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPatientBtnActionPerformed
         // TODO add your handling code here:
+        //Fetching the values in the text fields
         String name = nameTF.getText();
         String priority = (String) priorityCmb.getSelectedItem();
         String detailsGP = gpDetailsTF.getText();
@@ -303,20 +331,23 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         Patient newPatient = new Patient(name, priority, detailsGP, age, fromHospital);
         patientList.addPatient(newPatient); // Add to list
         priorityQueue.enqueue(newPatient); // Add to Priority Queue
-        
+        //display
         displayPatTA.append("Patient Added: " + name + "\n");
         
     }//GEN-LAST:event_addPatientBtnActionPerformed
 
     private void searchPatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchPatBtnActionPerformed
         // TODO add your handling code here:
+        //prompt for the name to be searched
         String name = JOptionPane.showInputDialog(null, "Enter name of patient to search");
+        //check if no name is entered
         if (name.isEmpty()){
             JOptionPane.showMessageDialog(null, "No name entered");
             return;
         } else{
+            //Searches through the list for a matching name using the get method in the dll
             Patient mySearch = patientList.getPatient(name);
-            if(mySearch != null){
+            if(mySearch != null){ //if name is found
                 displayPatTA.append("Patient Found: " + "\n" + mySearch.toString() + "\n");
             } else{
                 displayPatTA.append("Patient not found" + "\n");
@@ -326,12 +357,14 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
 
     private void deletePatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePatBtnActionPerformed
         // TODO add your handling code here:
+        //Check if the list is empty before deleting
         if(patientList.size() == 0){
             JOptionPane.showMessageDialog(null, "There are no patients in the list");
             return;
         }
-        
+        //prompt to enter name of the patient to delete
         String name = JOptionPane.showInputDialog(null, "Enter name of patient to delete");
+        //check if no name has been entered
         if (name.isEmpty()){
             JOptionPane.showMessageDialog(null, "No name entered");
             return;
@@ -339,7 +372,8 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
             //Searching for the name of the patient first
             Patient mySearch = patientList.getPatient(name);
             if (mySearch != null) {
-                patientList.removePatient(name);  //remove the patient if the name is 
+                patientList.removePatient(name);  //remove the patient if the name is found
+                
                 displayPatTA.append("Patient " + name + "deleted successfully!" + "\n");
             } else {
                 displayPatTA.append("Patient not found" + "\n");
@@ -347,6 +381,98 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_deletePatBtnActionPerformed
 
+    private void addNoShowBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNoShowBtnActionPerformed
+        // TODO add your handling code here:
+        
+        //Prompt for the name of patient to be marked as a no show
+         String patientName = JOptionPane.showInputDialog("Enter patient name to mark as No-Show:");
+         
+         //check if field is empty
+         if(patientName.isEmpty()){
+             displayNoShowTA.append("No name entered" + "\n");
+             return;
+         } else{
+            //Search for the name in the dllist
+            Patient noShowPatient;  //to hold the name of the patient to be marked as a no show
+            Patient mySearch = patientList.getPatient(patientName);
+            if (mySearch != null) {
+                noShowPatient = mySearch;
+                //Add the patient to the queue
+                noShowQueue.enqueue(noShowPatient);
+                
+                //remove them from priorityQ:
+                //Find them in the priority queue
+                noShowPatient = findPatientInPriorityQueue(patientName);
+                removePatientFromPriorityQueue(patientName);
+                
+                //Display message
+                displayNoShowTA.append("Added successfully" + "\n");
+            } else {
+                displayNoShowTA.append("Patient not found" + "\n");
+            }
+            
+         }
+       
+    }//GEN-LAST:event_addNoShowBtnActionPerformed
+
+    private void viewNoShowBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewNoShowBTNActionPerformed
+        // TODO add your handling code here:
+        displayNoShowTA.append("No show Patients: " + "\n" +noShowQueue.displayQueue() + "\n");
+    }//GEN-LAST:event_viewNoShowBTNActionPerformed
+
+    private void schedulePatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schedulePatBtnActionPerformed
+        // TODO add your handling code here:
+        //Check if queue is empty
+        if(priorityQueue.isEmpty()){
+            schedulePatTA.append("No Patients in the queue");
+        } else{
+            //get patient at the front of PQ
+            Patient myNextPatient = priorityQueue.peek(); //Returns the patient at the front without removing 
+            
+            //display
+            schedulePatTA.append("Next Patient: " + "\n" + myNextPatient.toString() + "\n");
+        }
+    }//GEN-LAST:event_schedulePatBtnActionPerformed
+
+    private void displayPQBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayPQBtnActionPerformed
+        // TODO add your handling code here:
+        // Check if the priority queue is empty
+        if (priorityQueue.isEmpty()) {
+            // If the queue is empty, notify the user
+            JOptionPane.showMessageDialog(null, "No patients in the queue.");
+        } else{
+            schedulePatTA.append(priorityQueue.printPQueue());
+        }
+    }//GEN-LAST:event_displayPQBtnActionPerformed
+    
+    //Method for finding a patient in the priority queue
+    private Patient findPatientInPriorityQueue(String patientName) {
+        for (Patient patient : priorityQueue.list) {
+            if (patient.getName().equalsIgnoreCase(patientName)) {
+                return patient;  // Return the patient if found
+            }
+        }
+        return null;  // Return null if not found
+    }
+    
+    //Method for removing a patient in the priority queue
+    private void removePatientFromPriorityQueue(String patientName) {
+        Patient patientToRemove = null;
+        for (Patient patient : priorityQueue.list) {
+            if (patient.getName().equalsIgnoreCase(patientName)) {
+                patientToRemove = patient;
+                break;  //  break the loop when patient is found
+            }
+        }
+
+        if (patientToRemove != null) {  //If patient was found
+            // Remove the patient from the priority queue
+            priorityQueue.list.remove(patientToRemove);
+            JOptionPane.showMessageDialog(null, "Patient " + patientName + " has been removed from the priority queue.");
+        }
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -390,6 +516,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
     private javax.swing.JButton deletePatBtn;
     private javax.swing.JButton displayAllPatBtn;
     private javax.swing.JTextArea displayNoShowTA;
+    private javax.swing.JButton displayPQBtn;
     private javax.swing.JTextArea displayPatTA;
     private javax.swing.JButton exitBTN;
     private javax.swing.JCheckBox fromHospCheckBox;

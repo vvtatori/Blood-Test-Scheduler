@@ -15,6 +15,7 @@ public interface PatientPriorityQInterface {
     public int size();  //gives the size of the PQ
     public boolean isEmpty(); //Cchecks if the queue is empty
     public Patient dequeue();  //removes a patient object from the queue
+    public Patient peek();
     
     public String printPQueue();
 }

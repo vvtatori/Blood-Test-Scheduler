@@ -119,9 +119,15 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="schedulePatBtn" min="-2" max="-2" attributes="0"/>
-                  <Component id="addNoShowBtn" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                      <Component id="schedulePatBtn" min="-2" max="-2" attributes="0"/>
+                      <Component id="addNoShowBtn" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                      <Component id="displayPQBtn" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -130,11 +136,12 @@
                       <EmptySpace min="-2" pref="408" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="deletePatBtn" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" min="-2" pref="380" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="deletePatBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="244" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jScrollPane2" min="-2" pref="552" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -184,27 +191,25 @@
                   <Component id="fromHospLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="fromHospCheckBox" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="addPatientBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="displayAllPatBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="searchPatBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="deletePatBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                      <Component id="lblTitle2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="47" max="32767" attributes="0"/>
-                      <Component id="schedulePatBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                  </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="addPatientBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="displayAllPatBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="searchPatBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="deletePatBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <Component id="lblTitle2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="schedulePatBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="displayPQBtn" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jScrollPane2" alignment="1" min="-2" pref="102" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Component id="lblTitle3" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -287,8 +292,11 @@
     </Container>
     <Component class="javax.swing.JButton" name="schedulePatBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Schedule Next Patient"/>
+        <Property name="text" type="java.lang.String" value="Scheduled Next Patient"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="schedulePatBtnActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <AuxValues>
@@ -330,6 +338,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="ADD No Show Patient"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addNoShowBtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTitle4">
       <Properties>
@@ -365,6 +376,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="VIEW All No Show Patients"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewNoShowBTNActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane3">
       <AuxValues>
@@ -385,6 +399,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="EXIT"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="displayPQBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="View Full Priority Queue"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayPQBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
