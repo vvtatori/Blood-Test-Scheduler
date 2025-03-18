@@ -17,5 +17,5 @@ public interface PatientDLLInterface {
     public void removePatient(String name); //removes a patient from the list
     public void addPatient(Patient patient); //adds a patient to the list
    
-    public void printList();
+    public String printList();
 }

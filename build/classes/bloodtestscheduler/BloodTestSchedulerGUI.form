@@ -97,22 +97,20 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="45" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jScrollPane1" min="-2" pref="440" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="exitBTN" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jScrollPane1" min="-2" pref="440" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="exitBTN" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="283" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
@@ -255,6 +253,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="ADD Patient"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addPatientBtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="displayAllPatBtn">
       <Properties>
@@ -313,11 +314,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="SEARCHPatient"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchPatBtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="deletePatBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="DELETE Patient"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deletePatBtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="addNoShowBtn">
       <Properties>

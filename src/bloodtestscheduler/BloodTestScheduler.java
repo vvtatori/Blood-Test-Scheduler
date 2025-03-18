@@ -44,14 +44,14 @@ public class BloodTestScheduler {
         
         // Display all patients
         System.out.println("Patients requesting a test:");
-        patientList.printList();
+        System.out.println(patientList.printList()); 
         
         // Remove a patient
-        patientList.removePatient("Bob");
+        patientList.removePatient("Jane");
         
         // Display after removal
         System.out.println("\nAfter removing Bob:");
-        patientList.printList();
+        System.out.println(patientList.printList()); 
         
         //Getting a patient from the list
         System.out.println("\n" + patientList.getPatient("Alice"));
@@ -77,6 +77,9 @@ public class BloodTestScheduler {
         
         System.out.println("After adding 6th no-show:");
         System.out.println(noShowQueue.displayQueue());
+        
+        BloodTestSchedulerGUI myGUI = new BloodTestSchedulerGUI();
+        myGUI.setVisible(true);
         
         
     }

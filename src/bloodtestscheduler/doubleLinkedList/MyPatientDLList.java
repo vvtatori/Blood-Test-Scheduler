@@ -42,15 +42,28 @@ public class MyPatientDLList implements PatientDLLInterface{
             newNode.setPrev(last);
             last = newNode;  //makes the new node the last
         }
+        size++;
     }
     
     @Override
     public void removePatient(String name){
+        if (head == null) { // Checking if list is empty
+            System.out.println("List is empty. No patients to remove.");
+            return; // Exiting if the list is empty
+        }
+        
         current = head;
+        boolean patientFound = false;  //For tracking the deletion of a user
+        
         while (current != null) {
             if (current.patient.getName().equalsIgnoreCase(name)) {  //checks if the name matches any name in the list
+                //If there is only one itm in the list
+                if(current == head && current == last){
+                    head = null;
+                    last = null;
+                }
                 //Removing the first item (head)
-                if (current == head) {
+                else if (current == head) {
                     head = head.getNext();
                     head.setPrev(null);
                     //if (head != null) head.prev = null;
@@ -61,11 +74,16 @@ public class MyPatientDLList implements PatientDLLInterface{
                     current.prev.next = current.next;
                     current.next.prev = current.prev;
                 }
+                size--;  //reduces the size of the list by 1 after removing the patients
+                patientFound = true;  //patient found and removed
                 return;
             }
             current = current.next;
-            size--;  //reduces the size of the list by 1 after removing the patients
-        }    
+        }   
+        //Adding a message to indicate when the user was not found
+        if(patientFound == false){
+            System.out.println("Patient not found");
+        }
     }
             
     @Override
@@ -73,7 +91,7 @@ public class MyPatientDLList implements PatientDLLInterface{
         current = head; //starting from the first item in the list
         while (current != null) {
             if (current.patient.getName().equalsIgnoreCase(name)) {  //checks if the name matches any name in the list
-                return current.patient;
+                return current.patient;  //Return the found patient
             }
             current = current.next;
         }
@@ -81,11 +99,15 @@ public class MyPatientDLList implements PatientDLLInterface{
     }
    
     @Override
-    public void printList(){
+    public String printList(){
+        StringBuilder str = new StringBuilder();
         current = head; //starting from the first item in the list:
         while (current != null) {
-            System.out.println(current.getPatient());
+            str.append(current.getPatient().toString());
+            str.append("\n"); // Append patient details
             current = current.next;
         }
+        
+        return str.toString();
     }
 }
