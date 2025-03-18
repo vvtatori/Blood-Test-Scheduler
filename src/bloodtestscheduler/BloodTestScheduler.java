@@ -46,12 +46,19 @@ public class BloodTestScheduler {
         System.out.println("Patients requesting a test:");
         System.out.println(patientList.printList()); 
         
-        // Remove a patient
+        // Remove a patient not on the list
         patientList.removePatient("Jane");
         
         // Display after removal
+        System.out.println("\nAfter removing Jane:");
+        System.out.println(patientList.printList());
+        
+        // Remove a patient on the list
+        patientList.removePatient("Bob");
+        
+        // Display after removal
         System.out.println("\nAfter removing Bob:");
-        System.out.println(patientList.printList()); 
+        System.out.println(patientList.printList());
         
         //Getting a patient from the list
         System.out.println("\n" + patientList.getPatient("Alice"));
